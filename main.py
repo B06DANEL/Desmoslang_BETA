@@ -1,4 +1,3 @@
-# V0.11
 varN = ["out", "x", "y"]
 varC = ["0", "x", "y"]
 def replaceVars (text):
@@ -15,5 +14,11 @@ def set (var, cont):
         varN.append(var)
         varC.append("0")
     varC[varN.index(var)]=cont
-set("a","10")
-print(replaceVars("out=x+a"))
+def execLine (text):
+    if "=" in text:
+        var1=text.split("=")[0].strip()
+        var2=replaceVars(text.split("=")[1].strip())
+        set(var1,var2)
+execLine("a=10")
+execLine("b=a*5")
+print(replaceVars("out=x+b"))
