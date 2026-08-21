@@ -1,4 +1,4 @@
-# V0.1
+# V0.11
 varN = ["out", "x", "y"]
 varC = ["0", "x", "y"]
 def replaceVars (text):
@@ -10,8 +10,10 @@ def replaceVars (text):
             text=text.replace(varN[i],"("+varC[i]+")")
         i+=1
     return text
-def define (var):
+def set (var, cont):
     if var not in varN:
         varN.append(var)
         varC.append("0")
-print(replaceVars("out=x+5"))
+    varC[varN.index(var)]=cont
+set("a","10")
+print(replaceVars("out=x+a"))
