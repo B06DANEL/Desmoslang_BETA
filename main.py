@@ -15,10 +15,14 @@ def set (var, cont):
         varC.append("0")
     varC[varN.index(var)]=cont
 def execLine (text):
-    if "=" in text:
-        var1=text.split("=")[0].strip()
-        var2=replaceVars(text.split("=")[1].strip())
-        set(var1,var2)
+    if not text.startswith("#"):
+        if "#" in text:
+            text=text.split("#")[0].strip()
+        if "=" in text:
+            var1=text.split("=")[0].strip()
+            var2=replaceVars(text.split("=")[1].strip())
+            set(var1,var2)
 execLine("a=10")
-execLine("b=a*5")
+execLine("#comment test")
+execLine("b=a*5 #comment test 2")
 print(replaceVars("out=x+b"))
